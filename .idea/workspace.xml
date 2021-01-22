@@ -41,10 +41,12 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowMessages.ShowToolbar" value="false" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -54,5 +56,11 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="249" y="249" width="1287" height="738" key="SettingsEditor" timestamp="1611300892129">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="249" y="249" width="1287" height="738" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1611300892129" />
   </component>
 </project>
