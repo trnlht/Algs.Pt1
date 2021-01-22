@@ -4,12 +4,14 @@
  *  Last modified:     1/1/2019
  **************************************************************************** */
 
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 public class Percolation {
 
     private int[] id;
     private boolean[] opened;
     private int size;
-
+    private WeightedQuickUnionUF wqu;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -21,10 +23,12 @@ public class Percolation {
 
         opened = new boolean[n * n];
 
-        id = new int[n * n];
+        wqu = new WeightedQuickUnionUF(n * n);
 
-        for (int i = 0; i < id.length; i++)
-            id[i] = i;
+        // id = new int[n * n];
+        //
+        // for (int i = 0; i < id.length; i++)
+        //     id[i] = i;
 
     }
 
@@ -35,14 +39,20 @@ public class Percolation {
         return size * row + col;
     }
 
+    private getNeighborPositionsList() {
+
+    }
+
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
         if (!isOpen(row, col)) {
             //Открываем саму ячейку
-            int pos = position(row, col);
+            int selfPos = position(row, col);
             opened[pos] = true;
 
             //Связываем с соседними открытыми ячейками
+
+            //for(int )
         }
 
     }
