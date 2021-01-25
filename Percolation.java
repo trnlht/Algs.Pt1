@@ -4,7 +4,7 @@
  *  Last modified:     1/1/2019
  **************************************************************************** */
 
-//TODO Исправить код с учётом того что row и col могут быть в д-не [1, n]
+//TODO Добавить фиктивные участки сверху и снизу сетки
 
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
@@ -18,6 +18,7 @@ public class Percolation
     private boolean[] opened;
     private int size;
     private WeightedQuickUnionUF wqu;
+    private int openSitesCount;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n)
@@ -32,6 +33,8 @@ public class Percolation
 
         wqu = new WeightedQuickUnionUF(n * n);
 
+        openSitesCount = 0;
+
         // id = new int[n * n];
         //
         // for (int i = 0; i < id.length; i++)
@@ -41,26 +44,26 @@ public class Percolation
 
     private int position(int row, int col)
     {
-        if (row < 0 || row > (size - 1) || col < 0 || col > (size - 1))
+        if (row < 1 || row > size || col < 1 || col > size)
             throw new IllegalArgumentException();
 
-        return size * row + col;
+        return size * (row - 1) + (col - 1);
     }
 
     private ArrayList<Integer> getNeighborPositionsList(int row, int col)
     {
         ArrayList<Integer> neighbourPositions = new ArrayList<>();
 
-        if (col != 0)
+        if (col != 1)
             neighbourPositions.add(position(row, col - 1));
 
-        if (col != (size - 1))
+        if (col != size)
             neighbourPositions.add(position(row, col + 1));
 
-        if (row != 0)
+        if (row != 1)
             neighbourPositions.add(position(row - 1, col));
 
-        if (row != (size - 1))
+        if (row != size)
             neighbourPositions.add(position(row + 1, col));
 
         return neighbourPositions;
@@ -81,6 +84,8 @@ public class Percolation
             for (int neighborPos : neighborPositions)
                 if (opened[neighborPos])
                     wqu.union(selfPos, neighborPos);
+
+            openSitesCount++;
         }
 
     }
@@ -102,7 +107,7 @@ public class Percolation
     // returns the number of open sites
     public int numberOfOpenSites()
     {
-
+        return openSitesCount;
     }
 
     // does the system percolate?
