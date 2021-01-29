@@ -14,13 +14,12 @@ import java.util.ArrayList;
 public class Percolation
 {
 
-    private int[] id;
     private boolean[] opened;
-    private int size;
-    private WeightedQuickUnionUF wqu;
+    private final int size;
+    private final WeightedQuickUnionUF wqu;
     private int openSitesCount;
-    private int top_site_pos;
-    private int bottom_site_pos;
+    private final int top_site_pos;
+    private final int bottom_site_pos;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n)
@@ -129,8 +128,8 @@ public class Percolation
         return wqu.find(top_site_pos) == wqu.find(bottom_site_pos);
     }
 
-    public static void main(String[] args)
-    {
-
-    }
+    // public static void main(String[] args)
+    // {
+    //
+    // }
 }
