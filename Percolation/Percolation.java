@@ -112,7 +112,7 @@ public class Percolation
     public boolean isFull(int row, int col)
     {
         if (isOpen(row, col))
-            return wqu.connected(top_site_pos, position(row, col));
+            return wqu.find(top_site_pos) == wqu.find(position(row, col));
 
         return false;
     }
@@ -126,7 +126,7 @@ public class Percolation
     // does the system percolate?
     public boolean percolates()
     {
-        return wqu.connected(top_site_pos, bottom_site_pos);
+        return wqu.find(top_site_pos) == wqu.find(bottom_site_pos);
     }
 
     public static void main(String[] args)

@@ -12,10 +12,10 @@ import edu.princeton.cs.algs4.StdStats;
 public class PercolationStats
 {
     private double[] thresholds;
-    double m;
-    double s;
-    double confLo;
-    double confHi;
+    private double m;
+    private double s;
+    private double confLo;
+    private double confHi;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials)
