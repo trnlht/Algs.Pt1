@@ -45,7 +45,7 @@ public class PercolationStats
                 p.open(row, col);
             }
 
-            thresholds[i] = p.numberOfOpenSites() / (n * n);
+            thresholds[i] = (double) p.numberOfOpenSites() / (n * n);
         }
 
         m = StdStats.mean(thresholds);
@@ -83,10 +83,17 @@ public class PercolationStats
     // test client (see below)
     public static void main(String[] args)
     {
-        int n = Integer.parseInt(args[1]);  //Размерность сетки
-        int T = Integer.parseInt(args[2]);  //Количество испытаний
+        int n = Integer.parseInt(args[0]);  //Размерность сетки
+        int T = Integer.parseInt(args[1]);  //Количество испытаний
 
         PercolationStats ps = new PercolationStats(n, T);
+
+        System.out.println("mean = " + Double.toString(ps.mean()));
+        System.out.println("stddev = " + Double.toString(ps.stddev()));
+        System.out.println("95% confidence interval = [" +
+                                   Double.toString(ps.confidenceLo()) + ", " +
+                                   Double.toString(ps.confidenceHi()) + "]"
+        );
 
 
     }
