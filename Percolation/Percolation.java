@@ -4,12 +4,9 @@
  *  Last modified:     1/1/2019
  **************************************************************************** */
 
-//TODO Как то проверить что это всё работает
-
+// TODO Реализовать корректную обработку n=1 и n=2
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
-import java.util.ArrayList;
 
 public class Percolation
 {
@@ -18,8 +15,8 @@ public class Percolation
     private final int size;
     private final WeightedQuickUnionUF wqu;
     private int openSitesCount;
-    private final int top_site_pos;
-    private final int bottom_site_pos;
+    private final int topSitePos;
+    private final int bottomSitePos;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n)
@@ -35,16 +32,16 @@ public class Percolation
         // Два дополнительных элемента для фиктивного верхнего и фиктивного нижнего участка
         wqu = new WeightedQuickUnionUF(n * n + 2);
 
-        top_site_pos = n * n;
-        bottom_site_pos = n * n + 1;
+        topSitePos = n * n;
+        bottomSitePos = n * n + 1;
 
         //Связываем фиктивный верхний участок с верхним рядом
         for (int i = 0; i < n; i++)
-            wqu.union(i, top_site_pos);
+            wqu.union(i, topSitePos);
 
         //Связываем фиктивный нижний участок с нижним рядом
         for (int i = (n - 1) * n; i < n * n; i++)
-            wqu.union(i, bottom_site_pos);
+            wqu.union(i, bottomSitePos);
 
         openSitesCount = 0;
 
@@ -58,21 +55,21 @@ public class Percolation
         return size * (row - 1) + (col - 1);
     }
 
-    private ArrayList<Integer> getNeighborPositionsList(int row, int col)
+    private int[] getNeighborPositionsList(int row, int col)
     {
-        ArrayList<Integer> neighbourPositions = new ArrayList<>();
+        int[] neighbourPositions = { -1, -1, -1, -1 };
 
         if (col != 1)
-            neighbourPositions.add(position(row, col - 1));
+            neighbourPositions[0] = position(row, col - 1);
 
         if (col != size)
-            neighbourPositions.add(position(row, col + 1));
+            neighbourPositions[1] = position(row, col + 1);
 
         if (row != 1)
-            neighbourPositions.add(position(row - 1, col));
+            neighbourPositions[2] = position(row - 1, col);
 
         if (row != size)
-            neighbourPositions.add(position(row + 1, col));
+            neighbourPositions[3] = position(row + 1, col);
 
         return neighbourPositions;
     }
@@ -87,10 +84,10 @@ public class Percolation
             opened[selfPos] = true;
 
             //Связываем с соседними открытыми(!) ячейками
-            ArrayList<Integer> neighborPositions = getNeighborPositionsList(row, col);
+            int[] neighborPositions = getNeighborPositionsList(row, col);
 
             for (int neighborPos : neighborPositions)
-                if (opened[neighborPos])
+                if (neighborPos != -1 && opened[neighborPos])
                     wqu.union(selfPos, neighborPos);
 
             openSitesCount++;
@@ -111,7 +108,7 @@ public class Percolation
     public boolean isFull(int row, int col)
     {
         if (isOpen(row, col))
-            return wqu.find(top_site_pos) == wqu.find(position(row, col));
+            return wqu.find(topSitePos) == wqu.find(position(row, col));
 
         return false;
     }
@@ -125,7 +122,7 @@ public class Percolation
     // does the system percolate?
     public boolean percolates()
     {
-        return wqu.find(top_site_pos) == wqu.find(bottom_site_pos);
+        return wqu.find(topSitePos) == wqu.find(bottomSitePos);
     }
 
     // public static void main(String[] args)

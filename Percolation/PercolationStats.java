@@ -11,11 +11,10 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats
 {
-    private double[] thresholds;
-    private double m;
-    private double s;
-    private double confLo;
-    private double confHi;
+    private final double m;
+    private final double s;
+    private final double confLo;
+    private final double confHi;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials)
@@ -23,7 +22,7 @@ public class PercolationStats
         if (n <= 0 || trials <= 0)
             throw new IllegalArgumentException();
 
-        thresholds = new double[trials];
+        double[] thresholds = new double[trials];
 
         for (int i = 0; i < trials; i++)
         {
@@ -51,8 +50,10 @@ public class PercolationStats
         m = StdStats.mean(thresholds);
         s = StdStats.stddev(thresholds);
 
-        confLo = (m - (1.96 * s) / Math.sqrt(trials));
-        confHi = (m + (1.96 * s) / Math.sqrt(trials));
+        double CONFIDENCE_95 = 1.96;
+
+        confLo = (m - (CONFIDENCE_95 * s) / Math.sqrt(trials));
+        confHi = (m + (CONFIDENCE_95 * s) / Math.sqrt(trials));
     }
 
     // sample mean of percolation threshold
@@ -84,9 +85,9 @@ public class PercolationStats
     public static void main(String[] args)
     {
         int n = Integer.parseInt(args[0]);  //Размерность сетки
-        int T = Integer.parseInt(args[1]);  //Количество испытаний
+        int t = Integer.parseInt(args[1]);  //Количество испытаний
 
-        PercolationStats ps = new PercolationStats(n, T);
+        PercolationStats ps = new PercolationStats(n, t);
 
         System.out.println("mean = " + Double.toString(ps.mean()));
         System.out.println("stddev = " + Double.toString(ps.stddev()));
