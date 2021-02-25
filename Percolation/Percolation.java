@@ -122,6 +122,9 @@ public class Percolation
     // does the system percolate?
     public boolean percolates()
     {
+        if (openSitesCount < size)
+            return false;
+
         return wqu.find(topSitePos) == wqu.find(bottomSitePos);
     }
 

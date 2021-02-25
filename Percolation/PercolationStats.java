@@ -7,7 +7,6 @@
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
-// TODO Добавить вывод в консоль
 
 public class PercolationStats
 {
