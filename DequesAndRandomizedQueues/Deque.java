@@ -3,15 +3,39 @@ public class Deque<Item> implements Iterable<Item>
     class Node<Item>
     {
 
-        public Node(Item item, Node next)
+        public Node(Item item, Node next, Node prev)
         {
             this.next = next;
             this.item = item;
+            this.prev = prev;
         }
 
         Node next;
+        Node prev;
 
         Item item;
+    }
+
+    private class DequeIterator implements Iterator<Item>
+    {
+        private Node<Item> current = first;
+
+        public boolean hasNext()
+        {
+            return current != null;
+        }
+
+        public void remove()
+        {
+
+        }
+
+        public Item next()
+        {
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
     }
 
     private Node<Item> first;
@@ -22,7 +46,7 @@ public class Deque<Item> implements Iterable<Item>
 
     private void addInitialNode(Item item)
     {
-        first = new Node<Item>(item, null);
+        first = new Node<Item>(item, null, null);
         last = first;
     }
 
@@ -62,7 +86,8 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            newNode = new Node<Item>(item, first);
+            newNode = new Node<Item>(item, first, null);
+            first.prev = newNode;
             first = newNode;
         }
 
@@ -79,7 +104,7 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            newNode = new Node<Item>(item, null);
+            newNode = new Node<Item>(item, null, last);
             last.next = newNode;
             last = newNode;
         }
@@ -98,7 +123,10 @@ public class Deque<Item> implements Iterable<Item>
         if (size == 1)
             removeSingleNode();
         else
+        {
+            first.next.prev = null;
             first = first.next;
+        }
 
         size--;
 
@@ -117,7 +145,8 @@ public class Deque<Item> implements Iterable<Item>
             removeSingleNode();
         else
         {
-
+            last = last.prev;
+            last.next = null;
         }
 
         size--;
@@ -127,8 +156,20 @@ public class Deque<Item> implements Iterable<Item>
 
     // return an iterator over items in order from front to back
     public Iterator<Item> iterator()
+    {
+        return new DequeIterator();
+    }
 
     // unit testing (required)
     public static void main(String[] args)
+    {
+        Deque<Integer> d = new Deque<Integer>();
+        d.addFirst(1);
+        d.addLast(2);
+        d.addLast(3);
+
+        for (int i : d)
+            System.out.print(i);
+    }
 
 }
