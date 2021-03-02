@@ -1,3 +1,6 @@
+import java.util.Iterator;
+
+
 public class Deque<Item> implements Iterable<Item>
 {
     class Node<Item>
@@ -86,7 +89,7 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            newNode = new Node<Item>(item, first, null);
+            Node newNode = new Node<Item>(item, first, null);
             first.prev = newNode;
             first = newNode;
         }
@@ -104,7 +107,7 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            newNode = new Node<Item>(item, null, last);
+            Node newNode = new Node<Item>(item, null, last);
             last.next = newNode;
             last = newNode;
         }
@@ -116,7 +119,7 @@ public class Deque<Item> implements Iterable<Item>
     public Item removeFirst()
     {
         if (size == 0)
-            return new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException();
 
         Item firstItem = first.item;
 
@@ -137,7 +140,7 @@ public class Deque<Item> implements Iterable<Item>
     public Item removeLast()
     {
         if (size == 0)
-            return new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException();
 
         Item lastItem = last.item;
 
@@ -169,7 +172,25 @@ public class Deque<Item> implements Iterable<Item>
         d.addLast(3);
 
         for (int i : d)
-            System.out.print(i);
+            System.out.print(i + " ");
+
+        System.out.println("\nsize = " + d.size());
+
+        int x = d.removeFirst();
+        System.out.println(x);
+
+        x = d.removeLast();
+        System.out.println(x);
+
+        for (int i : d)
+            System.out.print(i + " ");
+
+        System.out.println();
+        System.out.println(d.isEmpty());
+
+        d.removeFirst();
+
+        System.out.println(d.isEmpty());
     }
 
 }
