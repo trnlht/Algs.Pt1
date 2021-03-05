@@ -13,5 +13,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/.lift" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/.lift" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/.lift" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/.lift" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>

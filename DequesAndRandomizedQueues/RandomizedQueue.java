@@ -55,22 +55,35 @@ public class RandomizedQueue<Item> implements Iterable<Item>
         size++;
     }
 
+    private int getRandomIndex()
+    {
+        int randomIndex = StdRandom.uniform(tail);
+
+        while (items[randomIndex] == null)
+            randomIndex = StdRandom.uniform(tail);
+
+        return randomIndex;
+    }
+
     // remove and return a random item
     public Item dequeue()
     {
         if (size == 0)
             throw new NoSuchElementException();
-        
 
-        while (true)
-        {
-            int randomIndex = StdRandom.uniform(1, tail);
-            if (items[randomIndex] != null)
-                break;
-        }
+        if (size == items.length / 4)
+            resize(items.length / 2);
 
+        int randomIndex = getRandomIndex();
+
+        Item item = items[randomIndex];
+
+        items[randomIndex] = null;
 
         size--;
+
+        return item;
+
     }
 
     // return a random item (but do not remove it)
@@ -78,18 +91,72 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     {
         if (size == 0)
             throw new NoSuchElementException();
+
+        int randomIndex = getRandomIndex();
+
+        return items[randomIndex];
+    }
+
+    private class RandomizedQueueIterator implements Iterator<Item>
+    {
+        private Item[] iteratorItems;
+
+        private int currentIndex;
+
+        public RandomizedQueueIterator()
+        {
+            currentIndex = 0;
+
+            iteratorItems = (Item[]) new Object[size];
+
+            for (int i = 0, j = 0; i < items.length; i++)
+            {
+                if (items[i] != null)
+                    iteratorItems[j++] = items[i];
+            }
+
+            StdRandom.shuffle(iteratorItems);
+        }
+
+        public boolean hasNext()
+        {
+            return currentIndex != iteratorItems.length;
+        }
+
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        }
+
+        public Item next()
+        {
+            if (currentIndex == iteratorItems.length)
+                throw new NoSuchElementException();
+
+            return iteratorItems[currentIndex++];
+        }
     }
 
     // return an independent iterator over items in random order
     public Iterator<Item> iterator()
     {
-
+        return new RandomizedQueueIterator();
     }
 
     // unit testing (required)
     public static void main(String[] args)
     {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
 
+        for (int i = 0; i < 10; i++)
+            rq.enqueue(i);
+
+        System.out.println("Rq size: " + rq.size());
+
+        for (int item : rq)
+            System.out.print(item + " ");
+
+        System.out.println();
     }
 
 }
