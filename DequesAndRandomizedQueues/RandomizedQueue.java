@@ -153,8 +153,17 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 
         System.out.println("Rq size: " + rq.size());
 
+        System.out.println("Iterating over items in queue:");
         for (int item : rq)
             System.out.print(item + " ");
+
+        System.out.println("\nRq size: " + rq.size());
+
+        System.out.println("Removing items from queue:");
+        while (!rq.isEmpty())
+            System.out.print(rq.dequeue() + " ");
+
+        System.out.println("\nRq size: " + rq.size());
 
         System.out.println();
     }
