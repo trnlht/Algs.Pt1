@@ -37,13 +37,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.lift" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../queues" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
-  <component name="RunManager" selected="Application.Permutation">
+  <component name="RunManager" selected="Application.RandomizedQueue">
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -56,7 +56,7 @@
     <configuration name="Permutation" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Permutation" />
       <module name="DequesAndRandomizedQueues" />
-      <option name="PROGRAM_PARAMETERS" value="666" />
+      <option name="PROGRAM_PARAMETERS" value="3" />
       <method v="2" />
     </configuration>
     <configuration name="RandomizedQueue" type="Application" factoryName="Application">
@@ -81,26 +81,26 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1614671301462" />
-    <state x="361" y="394" key="FileChooserDialogImpl" timestamp="1614936516334">
+    <state x="361" y="394" key="FileChooserDialogImpl" timestamp="1615364854262">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="361" y="394" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1614936516334" />
-    <state width="566" height="320" key="GridCell.Tab.0.bottom" timestamp="1615275448916">
+    <state x="361" y="394" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615364854262" />
+    <state width="948" height="325" key="GridCell.Tab.0.bottom" timestamp="1615369375025">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="566" height="320" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615275448916" />
-    <state width="566" height="320" key="GridCell.Tab.0.center" timestamp="1615275448916">
+    <state width="948" height="325" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615369375025" />
+    <state width="948" height="325" key="GridCell.Tab.0.center" timestamp="1615369375025">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="566" height="320" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615275448916" />
-    <state width="566" height="320" key="GridCell.Tab.0.left" timestamp="1615275448916">
+    <state width="948" height="325" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615369375025" />
+    <state width="948" height="325" key="GridCell.Tab.0.left" timestamp="1615369375025">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="566" height="320" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615275448916" />
-    <state width="566" height="320" key="GridCell.Tab.0.right" timestamp="1615275448916">
+    <state width="948" height="325" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615369375025" />
+    <state width="948" height="325" key="GridCell.Tab.0.right" timestamp="1615369375025">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="566" height="320" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615275448916" />
+    <state width="948" height="325" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1615369375025" />
     <state x="47" y="251" width="1069" height="805" key="SettingsEditor" timestamp="1615278685885">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>

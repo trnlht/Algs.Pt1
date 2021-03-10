@@ -3,18 +3,18 @@ import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item>
 {
-    class Node<Item>
+    private class Node<Item>
     {
 
-        public Node(Item item, Node next, Node prev)
+        public Node(Item item, Node<Item> next, Node<Item> prev)
         {
             this.next = next;
             this.item = item;
             this.prev = prev;
         }
 
-        Node next;
-        Node prev;
+        Node<Item> next;
+        Node<Item> prev;
 
         Item item;
     }
@@ -89,7 +89,7 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            Node newNode = new Node<Item>(item, first, null);
+            Node<Item> newNode = new Node<Item>(item, first, null);
             first.prev = newNode;
             first = newNode;
         }
@@ -107,7 +107,7 @@ public class Deque<Item> implements Iterable<Item>
             addInitialNode(item);
         else
         {
-            Node newNode = new Node<Item>(item, null, last);
+            Node<Item> newNode = new Node<Item>(item, null, last);
             last.next = newNode;
             last = newNode;
         }

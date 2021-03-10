@@ -1,23 +1,22 @@
-import edu.princeton.cs.algs4.StdIn;
+import java.util.Scanner;
 
-public class Permutation
-{
-    public static void main(String[] args)
-    {
+public class Permutation {
+    public static void main(String[] args) {
         int k = Integer.parseInt(args[0]);
 
-        System.out.println("k = " + k);
+        //System.out.println("k = " + k);
 
-        RandomizedQueue rq = new RandomizedQueue();
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
 
-        while (!StdIn.isEmpty())
-            rq.enqueue(StdIn.readString());
+        Scanner in = new Scanner(System.in);
 
-        while (!rq.isEmpty())
+        while (in.hasNext())
+            rq.enqueue(in.next());
+
+        while (k > 0) {
             System.out.println(rq.dequeue());
-
-        //Scanner in = new Scanner(System.in);
-        //in.next()
+            k--;
+        }
 
     }
 }
