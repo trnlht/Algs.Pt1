@@ -8,18 +8,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>
     private int size;
     private int tail;
 
-    private Item items[];
-
-    private void resize(int newCapacity)
-    {
-        Item[] newArray = (Item[]) new Object[newCapacity];
-        for (int i = 0, j = 0; i < tail; i++)
-            if (items[i] != null)
-                newArray[j++] = items[i];
-
-        tail = size;
-        items = newArray;
-    }
+    private Item[] items;
 
     // construct an empty randomized queue
     public RandomizedQueue()
@@ -27,6 +16,18 @@ public class RandomizedQueue<Item> implements Iterable<Item>
         size = 0;
         tail = 0;
         items = (Item[]) new Object[1];
+    }
+
+    private void resize(int newCapacity)
+    {
+        Item[] newArray = (Item[]) new Object[newCapacity];
+        int j = 0;
+        for (int i = 0; i < tail; i++)
+            if (items[i] != null)
+                newArray[j++] = items[i];
+
+        tail = size;
+        items = newArray;
     }
 
     // is the randomized queue empty?
@@ -99,7 +100,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 
     private class RandomizedQueueIterator implements Iterator<Item>
     {
-        private Item[] iteratorItems;
+        private final Item[] iteratorItems;
 
         private int currentIndex;
 
@@ -109,7 +110,9 @@ public class RandomizedQueue<Item> implements Iterable<Item>
 
             iteratorItems = (Item[]) new Object[size];
 
-            for (int i = 0, j = 0; i < items.length; i++)
+            int j = 0;
+
+            for (int i = 0; i < items.length; i++)
             {
                 if (items[i] != null)
                     iteratorItems[j++] = items[i];

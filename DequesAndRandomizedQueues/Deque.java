@@ -1,10 +1,15 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class Deque<Item> implements Iterable<Item>
 {
     private class Node<Item>
     {
+        Node<Item> next;
+        Node<Item> prev;
+
+        Item item;
 
         public Node(Item item, Node<Item> next, Node<Item> prev)
         {
@@ -13,10 +18,6 @@ public class Deque<Item> implements Iterable<Item>
             this.prev = prev;
         }
 
-        Node<Item> next;
-        Node<Item> prev;
-
-        Item item;
     }
 
     private class DequeIterator implements Iterator<Item>
@@ -30,11 +31,14 @@ public class Deque<Item> implements Iterable<Item>
 
         public void remove()
         {
-
+            throw new UnsupportedOperationException();
         }
 
         public Item next()
         {
+            if (current == null)
+                throw new NoSuchElementException();
+
             Item item = current.item;
             current = current.next;
             return item;
@@ -47,6 +51,14 @@ public class Deque<Item> implements Iterable<Item>
 
     private int size;
 
+    // construct an empty deque
+    public Deque()
+    {
+        first = null;
+        last = null;
+        size = 0;
+    }
+
     private void addInitialNode(Item item)
     {
         first = new Node<Item>(item, null, null);
@@ -57,14 +69,6 @@ public class Deque<Item> implements Iterable<Item>
     {
         first = null;
         last = null;
-    }
-
-    // construct an empty deque
-    public Deque()
-    {
-        first = null;
-        last = null;
-        size = 0;
     }
 
     // is the deque empty?
@@ -119,7 +123,7 @@ public class Deque<Item> implements Iterable<Item>
     public Item removeFirst()
     {
         if (size == 0)
-            throw new java.util.NoSuchElementException();
+            throw new NoSuchElementException();
 
         Item firstItem = first.item;
 
@@ -140,7 +144,7 @@ public class Deque<Item> implements Iterable<Item>
     public Item removeLast()
     {
         if (size == 0)
-            throw new java.util.NoSuchElementException();
+            throw new NoSuchElementException();
 
         Item lastItem = last.item;
 
