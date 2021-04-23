@@ -12,6 +12,7 @@ import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.Comparator;
 
+
 public class Point implements Comparable<Point>
 {
 
@@ -145,6 +146,21 @@ public class Point implements Comparable<Point>
         return "(" + x + ", " + y + ")";
     }
 
+    public static boolean checkPoints(Point[] points)
+    {
+        //TODO Возможно добавить сюда проверку на повторные точки
+        if (points == null)
+            return false;
+
+        for (int i = 0; i < points.length; i++)
+        {
+            if (points[i] == null)
+                return false;
+        }
+
+        return true;
+    }
+
     /**
      * Unit tests the Point data type.
      */
@@ -153,3 +169,4 @@ public class Point implements Comparable<Point>
         /* YOUR CODE HERE */
     }
 }
+

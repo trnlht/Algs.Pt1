@@ -11,16 +11,16 @@ public class BruteCollinearPoints
 {
     private int segmentsNum;
 
-    ArrayList<LineSegment> segmentsArr;
+    ArrayList<LineSegment> segmentsArrList;
 
     public BruteCollinearPoints(Point[] points)
     {
-        if (points == null)
+        if (!Point.checkPoints(points))
             throw new IllegalArgumentException();
 
         segmentsNum = 0;
 
-        segmentsArr = new ArrayList<>();
+        segmentsArrList = new ArrayList<>();
 
         for (int i = 0; i < points.length; i++)
             for (int j = i + 1; j < points.length; j++)
@@ -37,7 +37,7 @@ public class BruteCollinearPoints
                             Arrays.sort(segment);
                             LineSegment ls = new LineSegment(segment[0], segment[3]);
 
-                            segmentsArr.add(ls);
+                            segmentsArrList.add(ls);
 
                             segmentsNum++;
                         }
@@ -52,8 +52,8 @@ public class BruteCollinearPoints
 
     public LineSegment[] segments()
     {
-        LineSegment[] ret = new LineSegment[segmentsArr.size()];
-        return segmentsArr.toArray(ret);
+        LineSegment[] ret = new LineSegment[segmentsArrList.size()];
+        return segmentsArrList.toArray(ret);
     }
 
     public static void main(String[] args)
