@@ -36,10 +36,16 @@ public class FastCollinearPoints
                 int first = j;
                 double curSlope = points[i].slopeTo(points[first]);
 
-                while (j < points.length && points[i].slopeTo(points[j]) == curSlope)
+                while (j < points.length)
                 {
-                    cpCnt++;
-                    j++;
+                    double slopeJ = points[i].slopeTo(points[j]);
+                    if (slopeJ == curSlope)
+                    {
+                        cpCnt++;
+                        j++;
+                    }
+                    else
+                        break;
                 }
 
                 if (cpCnt >= 3)
@@ -47,16 +53,24 @@ public class FastCollinearPoints
                     //Добавляем сегмент [first,j)
                     Point[] segment = Arrays.copyOfRange(points, first, j);
                     Arrays.sort(segment);
+                    printSegmentPoints(points[i], segment);
                     LineSegment ls = new LineSegment(points[i], segment[segment.length - 1]);
 
                     segmentsArrList.add(ls);
                     segmentsCnt++;
                 }
             }
-
         }
+    }
 
+    public void printSegmentPoints(Point base, Point[] points)
+    {
+        System.out.println("Segment found:");
+        String res = base.toString() + " ";
+        for (int i = 0; i < points.length; i++)
+            res += points[i].toString() + " ";
 
+        System.out.println(res);
     }
 
 
@@ -81,7 +95,11 @@ public class FastCollinearPoints
                 new Point(1, 0),
                 new Point(1, 1),
                 new Point(1, 2),
-                new Point(1, 3)
+                new Point(1, 3),
+                new Point(5, 0),
+                new Point(5, 1),
+                new Point(5, 2),
+                new Point(5, 3)
         };
 
         FastCollinearPoints fcp = new FastCollinearPoints(points);
