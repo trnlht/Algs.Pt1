@@ -11,11 +11,12 @@ public class BruteCollinearPoints
 {
     private int segmentsNum;
 
-    ArrayList<LineSegment> segmentsArrList;
+    private ArrayList<LineSegment> segmentsArrList;
+
 
     public BruteCollinearPoints(Point[] points)
     {
-        if (!Point.checkPoints(points))
+        if (!checkPoints(points))
             throw new IllegalArgumentException();
 
         segmentsNum = 0;
@@ -43,6 +44,25 @@ public class BruteCollinearPoints
                         }
 
                     }
+    }
+
+    private boolean checkPoints(Point[] points)
+    {
+        if (points == null)
+            return false;
+
+        Arrays.sort(points);
+
+        for (int i = 0; i < points.length - 1; i++)
+        {
+            if (points[i].compareTo(points[i + 1]) == 0)
+                return false;
+
+            if (points[i] == null || points[i + 1] == null)
+                return false;
+        }
+
+        return true;
     }
 
     public int numberOfSegments()

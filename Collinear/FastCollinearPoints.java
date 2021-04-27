@@ -11,12 +11,13 @@ public class FastCollinearPoints
 {
     private int segmentsCnt;
 
-    ArrayList<LineSegment> segmentsArrList;
+    private ArrayList<LineSegment> segmentsArrList;
+
 
     public FastCollinearPoints(
             Point[] points)     // finds all line segments containing 4 or more points
     {
-        if (!Point.checkPoints(points))
+        if (!checkPoints(points))
             throw new IllegalArgumentException();
 
         segmentsCnt = 0;
@@ -26,7 +27,7 @@ public class FastCollinearPoints
         for (int i = 0; i < points.length - 1; i++)
         {
             Arrays.sort(points, i + 1, points.length,
-                        points[i].slopeOrder()/*Comparator for point i*/);
+                        points[i].slopeOrder()/* Comparator for point i */);
 
             int j = i + 1;
             //Проверяем, что три или более точек имеют одинаковый наклон с i-й точкой
@@ -50,10 +51,11 @@ public class FastCollinearPoints
 
                 if (cpCnt >= 3)
                 {
-                    //Добавляем сегмент [first,j)
+                    // TODO Сортировать все 4 точки (!!!)
+                    // Добавляем сегмент [first,j)
                     Point[] segment = Arrays.copyOfRange(points, first, j);
                     Arrays.sort(segment);
-                    printSegmentPoints(points[i], segment);
+                    // printSegmentPoints(points[i], segment);
                     LineSegment ls = new LineSegment(points[i], segment[segment.length - 1]);
 
                     segmentsArrList.add(ls);
@@ -63,16 +65,34 @@ public class FastCollinearPoints
         }
     }
 
-    public void printSegmentPoints(Point base, Point[] points)
+    private boolean checkPoints(Point[] points)
     {
-        System.out.println("Segment found:");
-        String res = base.toString() + " ";
-        for (int i = 0; i < points.length; i++)
-            res += points[i].toString() + " ";
+        if (points == null)
+            return false;
 
-        System.out.println(res);
+        Arrays.sort(points);
+
+        for (int i = 0; i < points.length - 1; i++)
+        {
+            if (points[i].compareTo(points[i + 1]) == 0)
+                return false;
+
+            if (points[i] == null || points[i + 1] == null)
+                return false;
+        }
+
+        return true;
     }
 
+    // private void printSegmentPoints(Point base, Point[] points)
+    // {
+    //     System.out.println("Segment found:");
+    //     StringBuilder res = new StringBuilder(base.toString() + " ");
+    //     for (int i = 0; i < points.length; i++)
+    //         res.append(points[i].toString() + " ");
+    //
+    //     System.out.println(res.toString());
+    // }
 
     public int numberOfSegments()        // the number of line segments
     {

@@ -66,11 +66,14 @@ public class Point implements Comparable<Point>
      */
     public double slopeTo(Point that)
     {
-        if (this.x == that.x)
-            return Double.POSITIVE_INFINITY;
-
         if (this.x == that.x && this.y == that.y)
             return Double.NEGATIVE_INFINITY;
+
+        if (this.y == that.y)
+            return +0.0;
+
+        if (this.x == that.x)
+            return Double.POSITIVE_INFINITY;
 
         return (1.0 * that.y - 1.0 * this.y) / (1.0 * that.x - 1.0 * this.x);
     }
@@ -146,20 +149,6 @@ public class Point implements Comparable<Point>
         return "(" + x + ", " + y + ")";
     }
 
-    public static boolean checkPoints(Point[] points)
-    {
-        //TODO Возможно добавить сюда проверку на повторные точки
-        if (points == null)
-            return false;
-
-        for (int i = 0; i < points.length; i++)
-        {
-            if (points[i] == null)
-                return false;
-        }
-
-        return true;
-    }
 
     /**
      * Unit tests the Point data type.
