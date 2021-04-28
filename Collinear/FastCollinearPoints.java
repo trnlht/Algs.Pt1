@@ -53,10 +53,15 @@ public class FastCollinearPoints
                 {
                     // TODO Сортировать все 4 точки (!!!)
                     // Добавляем сегмент [first,j)
-                    Point[] segment = Arrays.copyOfRange(points, first, j);
+                    // Point[] segment = Arrays.copyOfRange(points, first, j);
+                    Point[] segment = new Point[j - first + 1];
+                    segment[0] = points[i];
+                    for (int k = 1; k < segment.length; k++)
+                        segment[k] = points[first++];
+
                     Arrays.sort(segment);
                     // printSegmentPoints(points[i], segment);
-                    LineSegment ls = new LineSegment(points[i], segment[segment.length - 1]);
+                    LineSegment ls = new LineSegment(segment[0], segment[segment.length - 1]);
 
                     segmentsArrList.add(ls);
                     segmentsCnt++;
@@ -70,14 +75,17 @@ public class FastCollinearPoints
         if (points == null)
             return false;
 
-        Arrays.sort(points);
-
-        for (int i = 0; i < points.length - 1; i++)
-        {
-            if (points[i].compareTo(points[i + 1]) == 0)
+        for (int i = 0; i < points.length; i++)
+            if (points[i] == null)
                 return false;
 
-            if (points[i] == null || points[i + 1] == null)
+        Point[] cpoints = Arrays.copyOf(points, points.length);
+
+        Arrays.sort(cpoints);
+
+        for (int i = 0; i < cpoints.length - 1; i++)
+        {
+            if (cpoints[i].compareTo(cpoints[i + 1]) == 0)
                 return false;
         }
 
@@ -108,8 +116,8 @@ public class FastCollinearPoints
     public static void main(String[] args)
     {
         Point[] points = {
-                new Point(0, 0),
                 new Point(0, 1),
+                new Point(0, 0),
                 new Point(0, 2),
                 new Point(0, 3),
                 new Point(1, 0),

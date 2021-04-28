@@ -51,14 +51,17 @@ public class BruteCollinearPoints
         if (points == null)
             return false;
 
-        Arrays.sort(points);
-
-        for (int i = 0; i < points.length - 1; i++)
-        {
-            if (points[i].compareTo(points[i + 1]) == 0)
+        for (int i = 0; i < points.length; i++)
+            if (points[i] == null)
                 return false;
 
-            if (points[i] == null || points[i + 1] == null)
+        Point[] cpoints = Arrays.copyOf(points, points.length);
+
+        Arrays.sort(cpoints);
+
+        for (int i = 0; i < cpoints.length - 1; i++)
+        {
+            if (cpoints[i].compareTo(cpoints[i + 1]) == 0)
                 return false;
         }
 

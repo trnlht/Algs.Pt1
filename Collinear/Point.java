@@ -32,6 +32,11 @@ public class Point implements Comparable<Point>
         this.y = y;
     }
 
+    // public boolean equals(Point other)
+    // {
+    //     return this.x == other.x && this.y == other.y;
+    // }
+
     /**
      * Draws this point to standard draw.
      */
